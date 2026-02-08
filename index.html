@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immanuel | sudoimmanuel.me</title>
+    <meta name="description" content="Terminal Portfolio of Immanuel Antony Jeyam B - Full Stack Developer & Linux Enthusiast">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="scanlines"></div>
+    <div id="toast-container"></div>
+
+    <div class="gui-mode-container">
+    <div class="gui-hint-bubble">
+        <span class="hint-icon">!</span>
+        <span>Prefer Graphics?</span>
+    </div>
+    <a href="gui.html" class="gui-toggle-btn" id="gui-toggle">
+        <span class="toggle-brackets">[</span> SWITCH TO GUI <span class="toggle-brackets">]</span>
+    </a>
+</div>
+
+    <div class="app-container">
+        <main class="terminal-window" id="terminal-window">
+            
+            <div class="ascii-header">
+  ___                                          _ 
+ |_ _|_ __ ___  _ __ ___   __ _ _ __  _   _  ___| |
+  | || '_ ` _ \| '_ ` _ \ / _` | '_ \| | | |/ _ \ |
+  | || | | | | | | | | | | (_| | | | | |_| |  __/ |
+ |___|_| |_| |_|_| |_| |_|\__,_|_| |_|\__,_|\___|_|
+                                                   
+            </div>
+            
+            <div class="info-container">
+                <div class="ascii-art-animated" id="ascii-anim"></div>
+                <div class="system-status">
+                    <span>System: Ubuntu 24.04 LTS (x86_64)</span><br>
+                    <span>Kernel: 6.8.0-generic</span><br>
+                    <span>Uptime: <span id="uptime">0 mins</span></span>
+                </div>
+            </div>
+
+            <div id="terminal-output"></div>
+
+            <div class="input-line active-input">
+                <span class="prompt-user">immanuel@ubuntu</span>:<span class="prompt-path">~</span>$ 
+                <div class="input-wrapper">
+                    <input type="text" id="command-input" autocomplete="off" spellcheck="false" autofocus>
+                    <span id="input-display" class="input-display"></span><span class="cursor-block"></span>
+                </div>
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="sidebar-hint">
+                # Tip: Type these commands or click them to execute
+            </div>
+            <ul class="command-list">
+                <li onclick="runCommand('whoami')">[ whoami ]</li>
+                <li onclick="runCommand('ls skills')">[ ls skills ]</li>
+                <li onclick="runCommand('ls projects')">[ ls projects ]</li>
+                <li onclick="runCommand('cat experience')">[ cat experience ]</li>
+                <li onclick="runCommand('cat education')">[ cat education ]</li>
+                <li onclick="runCommand('ls certifications')">[ ls certifications ]</li>
+                <li onclick="runCommand('contact')">[ contact ]</li>
+                <li onclick="runCommand('theme toggle')">[ theme ]</li>
+                <li onclick="runCommand('gui')">[ gui ]</li>
+            </ul>
+        </aside>
+    </div>
+
+    <template id="tpl-whoami">
+        <div class="response-block">
+            <p>Hello! I'm <strong>Immanuel Antony Jeyam B</strong>.</p>
+            <p>I am a backend-focused <strong>Full Stack Developer</strong> and <strong>Linux Enthusiast</strong> based in Tirunelveli, India.</p>
+            <p>I specialize in building reliable, scalable systems using Node.js, Python, and Flutter. I have a strong interest in Cybersecurity, DevOps, and self-hosting.</p>
+            
+            <div class="status-badge">
+                <span class="status-label">CURRENT STATUS:</span>
+                <span class="status-value">
+                    <span class="live-dot">●</span>
+                    Project Trainee @ Colakin Pvt. Ltd.
+                </span>
+            </div>
+        </div>
+    </template>
+
+    <template id="tpl-skills">
+        <div class="response-block">
+            <div class="grid-2">
+                <div>
+                    <span class="category">Backend & APIs</span>
+                    • Node.js / Express.js<br>
+                    • Python (FastAPI)<br>
+                    • RESTful APIs<br>
+                    • Kong API Gateway
+                </div>
+                <div>
+                    <span class="category">Frontend & Mobile</span>
+                    • Flutter (Dart)<br>
+                    • React.js<br>
+                    • HTML/CSS/Tailwind
+                </div>
+                <div>
+                    <span class="category">Database</span>
+                    • MongoDB<br>
+                    • Firebase<br>
+                    • PostgreSQL
+                </div>
+                <div>
+                    <span class="category">DevOps & Tools</span>
+                    • Linux (Ubuntu) / Shell Scripting<br>
+                    • Docker / Ansible<br>
+                    • Git / GitHub
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="tpl-projects">
+        <div class="response-block">
+            <ul class="file-tree">
+                <li><span class="dir">~/projects/</span></li>
+                
+                <li class="project-item">
+                    <span class="tree-marker">├──</span>
+                    <div class="project-details">
+                        <div class="project-header">
+                            <strong class="project-name">EIO eCommerce App</strong>
+                            <span class="project-stack">[ Flutter, Node.js, Mongo ]</span>
+                        </div>
+                        <div class="project-desc">
+                            Full-featured eCommerce ecosystem (User+Admin). Integrated Razorpay & Cloudinary. Designed in Figma.
+                        </div>
+                    </div>
+                </li>
+
+                <li class="project-item">
+                    <span class="tree-marker">├──</span>
+                    <div class="project-details">
+                        <div class="project-header">
+                            <strong class="project-name">Ferti Optimizer</strong>
+                            <span class="project-stack">[ IoT, ML, Flutter ]</span>
+                        </div>
+                        <div class="project-desc">
+                            Smart agriculture solution using IoT sensors & Gemini API for fertilizer recommendations. Presented at MSME.
+                        </div>
+                    </div>
+                </li>
+
+                <li class="project-item">
+                    <span class="tree-marker">├──</span>
+                    <div class="project-details">
+                        <div class="project-header">
+                            <strong class="project-name">Ubuntu Text Extractor</strong>
+                            <span class="project-stack">[ Python, Linux ]</span>
+                        </div>
+                        <div class="project-desc">
+                            A native Linux port of the Windows PowerToys Text Extractor for quick OCR screen capture.
+                        </div>
+                    </div>
+                </li>
+
+                <li class="project-item">
+                    <span class="tree-marker">├──</span>
+                    <div class="project-details">
+                        <div class="project-header">
+                            <strong class="project-name">Home Server Lab</strong>
+                            <span class="project-stack">[ Self-Hosting, Networking ]</span>
+                        </div>
+                        <div class="project-desc">
+                            Custom self-hosted infrastructure running on Ubuntu Server (Docker, Portainer, Nginx).
+                        </div>
+                    </div>
+                </li>
+
+                <li class="project-item">
+                    <span class="tree-marker">└──</span>
+                    <div class="project-details">
+                        <div class="project-header">
+                            <strong class="project-name">AttendZone</strong>
+                            <span class="project-stack">[ Node.js, Face Rec ]</span>
+                        </div>
+                        <div class="project-desc">
+                            Automated attendance system using Facial Recognition and IP verification.
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </template>
+
+    <template id="tpl-experience">
+        <div class="response-block">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="date">Current</span>
+                    <div class="role">Project Trainee</div>
+                    <div class="company">Colakin Pvt. Ltd.</div>
+                    <div class="desc">Working on backend microservices with Python FastAPI & Node.js. Developing cross-platform Flutter applications.</div>
+                </div>
+                <div class="timeline-item">
+                    <span class="date">Jan 2025 - Apr 2025</span>
+                    <div class="role">Full Stack Developer Intern</div>
+                    <div class="company">Rise10 Steps Digital Solutions</div>
+                    <div class="desc">Designed and deployed EIO eCommerce app. Managed backend API architecture and Payment Gateway integration.</div>
+                </div>
+                <div class="timeline-item">
+                    <span class="date">Jun 2024 - Jul 2024</span>
+                    <div class="role">Mobile Development Intern</div>
+                    <div class="company">Zenanvibe Pvt. Ltd.</div>
+                    <div class="desc">Built modular Flutter applications, focusing on state management and Firebase integration.</div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="tpl-education">
+        <div class="response-block">
+            <table class="simple-table">
+                <tr>
+                    <td>2022 - 2026</td>
+                    <td><strong>B.E. Electronics & Comm. (Cyber Security)</strong><br>Francis Xavier Engineering College</td>
+                    <td>CGPA: 8.92</td>
+                </tr>
+                <tr>
+                    <td>2022</td>
+                    <td><strong>Class XII (HSE)</strong><br>Rose Mary Matric Hr. Sec. School</td>
+                    <td>94.3%</td>
+                </tr>
+                <tr>
+                    <td>2020</td>
+                    <td><strong>Class X (SSLC)</strong><br>Rose Mary Matric Hr. Sec. School</td>
+                    <td>89.2%</td>
+                </tr>
+            </table>
+        </div>
+    </template>
+
+    <template id="tpl-certifications">
+        <div class="response-block">
+            <ul>
+                <li><strong>Cloud Computing</strong> - NPTEL</li>
+                <li><strong>Mobile App Development (Flutter)</strong> - 7 Days Training</li>
+                <li><strong>Flutter & Dart: The Complete Guide</strong> - Udemy</li>
+                <li><strong>Rise of AI-ML in IoT using Python</strong> - 4 Days Training</li>
+            </ul>
+        </div>
+    </template>
+
+    <template id="tpl-contact">
+        <div class="response-block">
+            <p>
+                <strong>Email:</strong> <a href="mailto:immanueljeyam@gmail.com" target="_blank">immanueljeyam@gmail.com</a> <br>
+                <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/immanuel-antony-jeyam" target="_blank">linkedin.com/in/immanuel-antony-jeyam</a> <br>
+                <strong>GitHub:</strong> <a href="https://github.com/IMMANUEL-88" target="_blank">github.com/IMMANUEL-88</a><br>
+                <strong>Location:</strong> Tirunelveli, India
+            </p>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>
+>>>>>>> 68293e0 (first commit)

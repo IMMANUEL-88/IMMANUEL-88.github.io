@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immanuel | Full Stack Developer</title>
+    <meta name="description" content="Portfolio of Immanuel Antony Jeyam B - Full Stack Developer & Linux Enthusiast">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="gui.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">immanuel<span class="dot">.dev</span></a>
+            
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+            </div>
+
+            <div class="nav-actions">
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                    <i class="ri-moon-line"></i>
+                </button>
+
+                <a href="index.html" class="tui-switch-btn" title="Switch to Terminal Mode">
+                    <i class="ri-terminal-box-line"></i>
+                    <span>Terminal Mode</span>
+                </a>
+                
+                <button id="mobile-menu-btn" class="icon-btn mobile-only">
+                    <i class="ri-menu-4-line"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mobile-menu">
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#skills" class="mobile-link">Skills</a>
+        <a href="#projects" class="mobile-link">Projects</a>
+        <a href="#experience" class="mobile-link">Experience</a>
+        <a href="index.html" class="mobile-link tui-link">_> Terminal Mode</a>
+    </div>
+
+    <main>
+        <section id="about" class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <span class="greeting">Hello, I'm</span>
+                    <h1>Immanuel Antony Jeyam B.</h1>
+                    <p class="subtitle">Full Stack Developer & Linux Enthusiast</p>
+                    <p class="bio-snippet">
+                        Backend-focused developer specializing in building reliable, scalable systems using Node.js, Python, and Flutter. 
+                        Passionate about Cybersecurity, DevOps, and self-hosting.
+                    </p>
+                    
+                    <div class="current-status">
+                        <span class="status-dot"></span>
+                        <span>Project Trainee @ Colakin Pvt. Ltd.</span>
+                    </div>
+
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">Contact Me</a>
+                        <a href="resume.pdf" class="btn btn-outline" download>Download CV <i class="ri-download-line"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-grid">
+                    
+                    <div class="skill-card">
+                        <div class="icon-box"><i class="ri-server-line"></i></div>
+                        <h3>Backend & APIs</h3>
+                        <ul class="skill-list">
+                            <li>Node.js / Express.js</li>
+                            <li>Python (FastAPI)</li>
+                            <li>RESTful APIs</li>
+                            <li>Kong API Gateway</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="icon-box"><i class="ri-layout-masonry-line"></i></div>
+                        <h3>Frontend & Mobile</h3>
+                        <ul class="skill-list">
+                            <li>Flutter (Dart)</li>
+                            <li>React.js</li>
+                            <li>HTML / CSS / Tailwind</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="icon-box"><i class="ri-database-2-line"></i></div>
+                        <h3>Database</h3>
+                        <ul class="skill-list">
+                            <li>MongoDB</li>
+                            <li>Firebase</li>
+                            <li>PostgreSQL</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="icon-box"><i class="ri-terminal-window-line"></i></div>
+                        <h3>DevOps & Tools</h3>
+                        <ul class="skill-list">
+                            <li>Linux (Ubuntu)</li>
+                            <li>Docker / Ansible</li>
+                            <li>Git / GitHub</li>
+                            <li>Shell Scripting</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+
+                    <article class="project-card">
+                        <div class="project-header">
+                            <i class="ri-shopping-bag-3-line project-icon"></i>
+                            <div class="project-links">
+                                <a href="#" aria-label="View Code"><i class="ri-github-line"></i></a>
+                            </div>
+                        </div>
+                        <h3>EIO eCommerce App</h3>
+                        <p>Full-featured eCommerce ecosystem (User+Admin). Integrated Razorpay & Cloudinary. Designed in Figma.</p>
+                        <div class="tech-tags">
+                            <span>Flutter</span>
+                            <span>Node.js</span>
+                            <span>Mongo</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-header">
+                            <i class="ri-plant-line project-icon"></i>
+                            <div class="project-links">
+                                <a href="#" aria-label="View Code"><i class="ri-github-line"></i></a>
+                            </div>
+                        </div>
+                        <h3>Ferti Optimizer</h3>
+                        <p>Smart agriculture solution using IoT sensors & Gemini API for fertilizer recommendations. Presented at MSME.</p>
+                        <div class="tech-tags">
+                            <span>IoT</span>
+                            <span>ML</span>
+                            <span>Flutter</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-header">
+                            <i class="ri-text-spacing project-icon"></i>
+                            <div class="project-links">
+                                <a href="#" aria-label="View Code"><i class="ri-github-line"></i></a>
+                            </div>
+                        </div>
+                        <h3>Ubuntu Text Extractor</h3>
+                        <p>A native Linux port of the Windows PowerToys Text Extractor for quick OCR screen capture.</p>
+                        <div class="tech-tags">
+                            <span>Python</span>
+                            <span>Linux</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-header">
+                            <i class="ri-server-line project-icon"></i>
+                            <div class="project-links">
+                                <a href="#" aria-label="View Code"><i class="ri-github-line"></i></a>
+                            </div>
+                        </div>
+                        <h3>Home Server Lab</h3>
+                        <p>Custom self-hosted infrastructure running on Ubuntu Server (Docker, Portainer, Nginx).</p>
+                        <div class="tech-tags">
+                            <span>Self-Hosting</span>
+                            <span>Networking</span>
+                            <span>Docker</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-header">
+                            <i class="ri-user-smile-line project-icon"></i>
+                            <div class="project-links">
+                                <a href="#" aria-label="View Code"><i class="ri-github-line"></i></a>
+                            </div>
+                        </div>
+                        <h3>AttendZone</h3>
+                        <p>Automated attendance system using Facial Recognition and IP verification.</p>
+                        <div class="tech-tags">
+                            <span>Node.js</span>
+                            <span>Face Rec</span>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <div class="container">
+                <h2 class="section-title">Experience</h2>
+                <div class="timeline">
+                    
+                    <div class="timeline-item">
+                        <span class="timeline-date">Current</span>
+                        <div class="timeline-content">
+                            <h3>Project Trainee</h3>
+                            <span class="company">Colakin Pvt. Ltd.</span>
+                            <p>Working on backend microservices with Python FastAPI & Node.js. Developing cross-platform Flutter applications.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-date">Jan 2025 - Apr 2025</span>
+                        <div class="timeline-content">
+                            <h3>Full Stack Developer Intern</h3>
+                            <span class="company">Rise10 Steps Digital Solutions</span>
+                            <p>Designed and deployed EIO eCommerce app. Managed backend API architecture and Payment Gateway integration.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-date">Jun 2024 - Jul 2024</span>
+                        <div class="timeline-content">
+                            <h3>Mobile Development Intern</h3>
+                            <span class="company">Zenanvibe Pvt. Ltd.</span>
+                            <p>Built modular Flutter applications, focusing on state management and Firebase integration.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section bg-alt">
+            <div class="container">
+                <div class="grid-2-col">
+                    <div>
+                        <h2 class="section-title left-align">Education</h2>
+                        <div class="education-list">
+                            <div class="edu-item">
+                                <span class="year">2022 - 2026</span>
+                                <h4>B.E. Electronics & Comm. (Cyber Security)</h4>
+                                <p>Francis Xavier Engineering College</p>
+                                <span class="grade">CGPA: 8.92</span>
+                            </div>
+                            <div class="edu-item">
+                                <span class="year">2022</span>
+                                <h4>Class XII (HSE)</h4>
+                                <p>Rose Mary Matric Hr. Sec. School</p>
+                                <span class="grade">94.3%</span>
+                            </div>
+                            <div class="edu-item">
+                                <span class="year">2020</span>
+                                <h4>Class X (SSLC)</h4>
+                                <p>Rose Mary Matric Hr. Sec. School</p>
+                                <span class="grade">89.2%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2 class="section-title left-align">Certifications</h2>
+                        <ul class="cert-list">
+                            <li>
+                                <i class="ri-award-line"></i>
+                                <span>Cloud Computing - NPTEL</span>
+                            </li>
+                            <li>
+                                <i class="ri-smartphone-line"></i>
+                                <span>Mobile App Development (Flutter) - 7 Days Training</span>
+                            </li>
+                            <li>
+                                <i class="ri-code-s-slash-line"></i>
+                                <span>Flutter & Dart: The Complete Guide - Udemy</span>
+                            </li>
+                            <li>
+                                <i class="ri-robot-2-line"></i>
+                                <span>Rise of AI-ML in IoT using Python</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-card">
+                    <p>Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+                    
+                    <a href="mailto:immanueljeyam@gmail.com" class="email-link">immanueljeyam@gmail.com</a>
+                    
+                    <div class="social-links">
+                        <a href="https://github.com/IMMANUEL-88" target="_blank" aria-label="GitHub"><i class="ri-github-fill"></i></a>
+                        <a href="https://linkedin.com/in/immanuel-antony-jeyam" target="_blank" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                        <a href="mailto:immanueljeyam@gmail.com" aria-label="Email"><i class="ri-mail-fill"></i></a>
+                    </div>
+
+                    <p class="location"><i class="ri-map-pin-line"></i> Tirunelveli, India</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Immanuel Antony Jeyam B. Built with HTML/CSS/JS.</p>
+        </div>
+    </footer>
+
+    <script src="gui.js"></script>
+</body>
+</html>
