@@ -1,0 +1,6 @@
+/* contact.css */
+.response-block strong {
+    color: var(--accent-primary);
+    display: inline-block;
+    min-width: 80px;
+}

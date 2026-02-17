@@ -1,0 +1,151 @@
+.projects-dashboard {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.dir-header {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
+}
+
+.dir-count { color: var(--text-dim); }
+
+/* Card Layout */
+.project-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    border-color: var(--accent-primary);
+    background: rgba(88, 166, 255, 0.05);
+    transform: translateX(5px);
+}
+
+.project-main { flex: 1; }
+
+.project-identity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.project-icon { font-size: 1.5rem; }
+.project-title { color: var(--accent-highlight); font-size: 1.2rem; }
+
+/* Tech Badges */
+.project-tech-stack {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.tech-badge {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid currentColor;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.project-description {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    max-width: 80%;
+}
+
+/* Actions & Links */
+.project-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.project-actions.multi-repo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.github-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #24292f;
+    color: #ffffff !important;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border: none !important;
+    transition: background 0.2s;
+}
+
+.github-link.admin {
+    background: transparent;
+    border: 1px solid #444 !important;
+    color: #c9d1d9 !important;
+}
+
+.github-link.admin:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent-highlight) !important;
+}
+
+/* Ensure buttons are uniform width in multi-repo setup */
+.multi-repo .github-link {
+    width: 120px;
+    justify-content: center;
+}
+
+.github-link img { width: 16px; height: 16px; }
+.github-link:hover { background: #000; }
+
+.private-tag {
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    font-family: monospace;
+    opacity: 0.6;
+}
+
+/* Light Mode Contrast Fix */
+[data-theme="light"] .project-card { background: rgba(0, 0, 0, 0.02); }
+[data-theme="light"] .project-description { color: var(--text-main); }
+[data-theme="light"] .github-link { background: #24292f; }
+[data-theme="light"] .github-link.admin {
+    border-color: #d0d7de !important;
+    color: #24292f !important;
+}
+
+[data-theme="light"] .github-link.admin:hover {
+    background: #f6f8fa;
+    border-color: var(--accent-primary) !important;
+}
+
+@media (max-width: 768px) {
+    .project-card { flex-direction: column; align-items: flex-start; gap: 15px; }
+    .project-description { max-width: 100%; }
+}
+
+@media (max-width: 480px) {
+    .project-actions.multi-repo {
+        flex-direction: row;
+        width: 100%;
+    }
+    .multi-repo .github-link {
+        flex: 1;
+    }
+}
