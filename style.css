@@ -1,25 +1,19 @@
 :root {
     /* --- DARK MODE (Default) --- */
-    /* Backgrounds */
-    --bg-color: #0d1117;       /* GitHub Dimmed / Deep Navy */
-    --sidebar-bg: #010409;     /* Slightly darker for sidebar */
+    --bg-color: #0d1117;
+    --sidebar-bg: #010409;
     --input-bg: transparent;
     
-    /* Text */
-    --text-main: #c9d1d9;      /* Soft Off-White */
-    --text-dim: #8b949e;       /* Muted Grey */
-    --text-success: #56d364;   /* Green */
-    --text-error: #f85149;     /* Red */
+    --text-main: #c9d1d9;
+    --text-dim: #8b949e;
+    --text-success: #56d364;
+    --text-error: #f85149;
     
-    /* Accents */
-    --accent-primary: #58a6ff; /* Soft Blue */
-    --accent-secondary: #3fb950; /* Green for prompts */
-    --accent-highlight: #d2a8ff; /* Purple for key items */
+    --accent-primary: #58a6ff;
+    --accent-secondary: #3fb950;
+    --accent-highlight: #d2a8ff;
     
-    /* Borders */
     --border-color: #30363d;
-    
-    /* Font */
     --font-stack: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
@@ -49,7 +43,7 @@
 html, body {
     height: 100%;
     width: 100%;
-    overflow: hidden; /* Prevent body scroll, handle inside containers */
+    overflow: hidden;
 }
 
 body {
@@ -61,7 +55,42 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* --- SYSTEM INFO LAYOUT --- */
+/* --- LAYOUT --- */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* --- TERMINAL WINDOW --- */
+.terminal-window {
+    flex: 1;
+    padding: 20px;
+    padding-bottom: 140px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.terminal-window::-webkit-scrollbar { width: 8px; }
+.terminal-window::-webkit-scrollbar-track { background: var(--bg-color); }
+.terminal-window::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 4px;
+}
+
+/* --- HEADER & SYSTEM INFO --- */
+.ascii-header {
+    font-size: 10px;
+    line-height: 1.1;
+    white-space: pre;
+    color: var(--accent-primary);
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+@media (min-width: 768px) { .ascii-header { font-size: 14px; } }
+
 .info-container {
     display: flex;
     align-items: center;
@@ -77,88 +106,7 @@ body {
     color: var(--accent-secondary);
     white-space: pre;
     font-weight: bold;
-    min-width: 80px; /* Prevent jitter */
-}
-
-/* --- BLOCK CURSOR INPUT --- */
-.input-wrapper {
-    position: relative;
-    flex: 1;
-    margin-left: 8px;
-    height: 1.5em; /* Match line height */
-    display: flex;
-    align-items: center;
-}
-
-/* The visual display */
-.input-display {
-    color: var(--text-main);
-    white-space: pre;
-    z-index: 1;
-}
-
-/* The Block Cursor */
-.cursor-block {
-    display: inline-block;
-    width: 0.6em;
-    height: 1.1em;
-    background-color: var(--accent-secondary);
-    margin-left: 1px;
-    animation: blink 1s step-end infinite;
-    z-index: 1;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-/* --- LAYOUT --- */
-.app-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100vw;
-}
-
-/* --- TERMINAL WINDOW (LEFT/CENTER) --- */
-.terminal-window {
-    flex: 1;
-    padding: 20px;
-    padding-bottom: 140px;
-    overflow-y: auto; /* Scrollable content */
-    width: 100%;
-    /* display: flex;
-    flex-direction: column;
-    scroll-behavior: smooth; */
-}
-
-/* Hide scrollbar for cleaner look */
-.terminal-window::-webkit-scrollbar {
-    width: 8px;
-}
-.terminal-window::-webkit-scrollbar-track {
-    background: var(--bg-color);
-}
-.terminal-window::-webkit-scrollbar-thumb {
-    background-color: var(--border-color);
-    border-radius: 4px;
-}
-
-/* ASCII Header */
-.ascii-header {
-    font-size: 10px; /* Small on mobile */
-    line-height: 1.1;
-    white-space: pre;
-    color: var(--accent-primary);
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-@media (min-width: 768px) {
-    .ascii-header {
-        font-size: 14px; /* Larger on desktop */
-    }
+    min-width: 80px;
 }
 
 .system-status {
@@ -167,15 +115,42 @@ body {
     font-size: 0.9em;
 }
 
-/* --- DYNAMIC OUTPUT STYLES --- */
-#terminal-output {
-    margin-bottom: 10px;
+/* --- INPUT & CURSOR --- */
+.input-line { display: flex; align-items: center; width: 100%; }
+.prompt-user { color: var(--accent-secondary); font-weight: bold; }
+.prompt-path { color: var(--accent-primary); font-weight: bold; }
+
+.input-wrapper {
+    position: relative;
+    flex: 1;
+    margin-left: 8px;
+    height: 1.5em;
+    display: flex;
+    align-items: center;
 }
 
-.command-line {
-    margin-top: 10px;
-    margin-bottom: 5px;
+#command-input {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0; z-index: 2; cursor: default;
 }
+
+.input-display { color: var(--text-main); white-space: pre; z-index: 1; }
+
+.cursor-block {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.1em;
+    background-color: var(--accent-secondary);
+    margin-left: 1px;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* --- DYNAMIC OUTPUT --- */
+#terminal-output { margin-bottom: 10px; }
+.command-line { margin-top: 10px; margin-bottom: 5px; }
 
 .response-block {
     margin-bottom: 20px;
@@ -187,304 +162,7 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Specific Content Styling */
-.category {
-    color: var(--accent-highlight);
-    font-weight: bold;
-    text-decoration: underline;
-    margin-bottom: 5px;
-    display: block;
-}
-
-.grid-2 {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-}
-@media (min-width: 768px) {
-    .grid-2 { grid-template-columns: 1fr 1fr; }
-}
-
-/* --- PROJECTS TREE VIEW --- */
-.file-tree {
-    list-style: none;
-    padding-left: 0;
-}
-
-.file-tree li {
-    position: relative;
-    /* No margin bottom on the LI, we handle spacing inside */
-}
-
-.dir {
-    color: var(--accent-primary);
-    font-weight: bold;
-    font-size: 1.1em;
-    display: block;
-    margin-bottom: 10px;
-}
-
-/* Container for the Tree Marker + Content */
-.project-item {
-    display: flex;
-    align-items: flex-start; /* Align to top */
-    padding: 8px 10px;
-    border-radius: 6px;
-    transition: background-color 0.2s ease;
-}
-
-/* Hover Effect: Subtle highlight line */
-.project-item:hover {
-    background-color: rgba(255, 255, 255, 0.03); /* Very subtle white tint */
-}
-/* In Light Mode, make the hover darker */
-[data-theme="light"] .project-item:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-}
-
-.tree-marker {
-    color: var(--text-dim);
-    margin-right: 10px;
-    white-space: pre; /* Keeps the spacing consistent */
-    font-family: var(--font-stack);
-}
-
-.project-details {
-    flex: 1; /* Takes remaining width */
-    display: flex;
-    flex-direction: column;
-}
-
-.project-header {
-    display: flex;
-    justify-content: space-between; /* Pushes Stack to right */
-    align-items: baseline;
-    flex-wrap: wrap; /* Wraps on small mobile screens */
-    margin-bottom: 4px;
-}
-
-.project-name {
-    color: var(--text-main); /* Bright White */
-    font-weight: bold;
-    font-size: 1.05em;
-    margin-right: 15px;
-}
-/* Make the name pop on hover */
-.project-item:hover .project-name {
-    color: var(--accent-primary);
-    text-decoration: underline;
-}
-
-.project-stack {
-    font-size: 0.85em;
-    color: var(--accent-highlight); /* Purple/Pink */
-    font-weight: bold;
-    white-space: nowrap;
-}
-
-.project-desc {
-    color: var(--text-dim);
-    font-size: 0.9em;
-    line-height: 1.4;
-    border-left: 1px solid var(--border-color); /* The "connected" line */
-    padding-left: 10px;
-    margin-left: 2px; /* Slight offset to align with tree */
-}
-
-/* Mobile Tweaks */
-@media (max-width: 600px) {
-    .project-header {
-        flex-direction: column; /* Stack Name and Tags on phone */
-        align-items: flex-start;
-    }
-    .project-stack {
-        margin-top: 2px;
-        margin-bottom: 5px;
-        color: var(--accent-secondary); /* Green on mobile for readability */
-    }
-}
-
-.timeline .timeline-item {
-    margin-bottom: 20px;
-    padding-left: 15px;
-    border-left: 2px solid var(--border-color);
-}
-.timeline .date {
-    font-size: 0.85em;
-    color: var(--accent-primary);
-}
-.timeline .role {
-    font-weight: bold;
-    font-size: 1.1em;
-}
-.timeline .company {
-    color: var(--accent-highlight);
-    margin-bottom: 5px;
-}
-
-.simple-table {
-    width: auto;
-    border-collapse: collapse;
-    margin-top: 5px;
-}
-.simple-table td {
-    padding: 6px 40px 6px 0;
-    vertical-align: top;
-}
-.simple-table td:first-child {
-    width: auto;
-    min-width: 120px;
-    white-space: nowrap;
-    color: var(--text-dim);
-}
-
-.simple-table td:last-child {
-    /* 4. Remove extra padding from the last column (Marks) */
-    padding-right: 0;
-    text-align: right;
-    color: var(--accent-secondary); /* Optional: Highlights your grades in green */
-    white-space: nowrap;
-}
-
-@media (max-width: 600px) {
-    .simple-table td {
-        display: block; /* Stack vertically on small phones */
-        padding: 2px 0;
-    }
-    .simple-table td:last-child {
-        text-align: left;
-        margin-bottom: 15px;
-    }
-}
-
-/* --- STATUS BADGE (WHOAMI) --- */
-.status-badge {
-    margin-top: 15px;
-    padding: 10px 15px;
-    border: 1px solid var(--accent-secondary); /* Green Border */
-    background-color: rgba(63, 185, 80, 0.1); /* Very faint green tint */
-    border-radius: 4px;
-    display: inline-block; /* Wraps tightly around text */
-    font-family: var(--font-stack);
-}
-
-.status-label {
-    color: var(--accent-secondary);
-    font-weight: bold;
-    font-size: 0.85em;
-    letter-spacing: 1px;
-    margin-right: 10px;
-}
-
-.status-value {
-    color: var(--text-main);
-    font-weight: bold;
-}
-
-/* The Blinking Dot */
-.live-dot {
-    color: var(--accent-secondary);
-    margin-right: 6px;
-    animation: pulse-green 2s infinite;
-}
-
-@keyframes pulse-green {
-    0% { opacity: 1; text-shadow: 0 0 5px var(--accent-secondary); }
-    50% { opacity: 0.4; text-shadow: none; }
-    100% { opacity: 1; text-shadow: 0 0 5px var(--accent-secondary); }
-}
-
-/* Light Mode Tweak for readability */
-[data-theme="light"] .status-badge {
-    background-color: rgba(0, 100, 0, 0.05);
-    border-color: var(--accent-secondary);
-}
-
-/* Links */
-a {
-    color: var(--accent-primary);
-    text-decoration: none;
-    border-bottom: 1px dotted var(--accent-primary);
-}
-a:hover {
-    background-color: var(--accent-primary);
-    color: var(--bg-color);
-}
-
-/* --- INPUT LINE --- */
-.input-line {
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
-
-.prompt-user {
-    color: var(--accent-secondary);
-    font-weight: bold;
-}
-.prompt-path {
-    color: var(--accent-primary);
-    font-weight: bold;
-}
-
-/* The actual input field needs to blend in perfectly */
-#command-input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    z-index: 2;
-    cursor: default;
-}
-
-/* --- SIDEBAR (RIGHT) --- */
-/* .sidebar {
-    width: 250px;
-    background-color: var(--sidebar-bg);
-    border-left: 1px solid var(--border-color);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-}
-
-.sidebar-header {
-    color: var(--text-dim);
-    font-size: 0.8em;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-    font-weight: bold;
-}
-
-.command-list {
-    list-style: none;
-}
-
-.command-list li {
-    margin-bottom: 10px;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 4px;
-    transition: background 0.2s;
-}
-
-.command-list li:hover {
-    background-color: var(--border-color);
-}
-
-.command-list .cmd {
-    display: block;
-    color: var(--accent-secondary);
-    font-weight: bold;
-}
-
-.command-list .desc {
-    font-size: 0.85em;
-    color: var(--text-dim);
-} */
- /* --- NEW BOTTOM COMMAND BAR --- */
+/* --- SIDEBAR / BOTTOM COMMANDS --- */
 .sidebar {
     background-color: var(--sidebar-bg);
     border-top: 1px solid var(--border-color);
@@ -492,24 +170,13 @@ a:hover {
     z-index: 10;
 }
 
-.sidebar-header {
-    display: none; /* Hide the title "COMMAND GUIDE" to save space */
-}
-
 .sidebar-hint {
     color: var(--accent-secondary);
     font-size: 0.85em;
-    font-style: italic; /* Makes it look like a comment */
+    font-style: italic;
     text-align: center;
     margin-bottom: 8px;
     opacity: 0.7;
-}
-
-/* Optional: Hide the hint on very small screens to save space */
-@media (max-width: 400px) {
-    .sidebar-hint {
-        display: none;
-    }
 }
 
 .command-list {
@@ -524,7 +191,6 @@ a:hover {
     font-size: 0.9em;
     color: var(--text-dim);
     cursor: pointer;
-    transition: all 0.2s;
     font-weight: bold;
 }
 
@@ -533,73 +199,7 @@ a:hover {
     text-shadow: 0 0 5px var(--accent-secondary);
 }
 
-.command-list .cmd {
-    display: inline-block; /* Keep on same line */
-    color: var(--accent-secondary);
-    font-weight: bold;
-    margin-right: 5px;
-}
-
-.command-list .desc {
-    display: inline-block;
-    font-size: 0.85em;
-    color: var(--text-dim);
-}
-
-/* Mobile Tweak */
-@media (max-width: 600px) {
-    .command-list {
-        gap: 8px;
-        justify-content: flex-start; /* Left align on phone */
-    }
-    .command-list li {
-        font-size: 0.8rem;
-        padding: 4px 6px;
-    }
-}
-
-/* --- RESPONSIVE DESIGN (MOBILE) --- */
-@media (max-width: 850px) {
-    .app-container {
-        flex-direction: column; /* Stack vertically on mobile */
-    }
-
-    .terminal-window {
-        height: 70%; /* Take up most of the screen */
-    }
-
-    .sidebar {
-        width: 100%;
-        height: 30%; /* Bottom drawer style */
-        border-left: none;
-        border-top: 1px solid var(--border-color);
-        overflow-y: auto;
-    }
-
-    .command-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .command-list li {
-        margin-bottom: 0;
-        border: 1px solid var(--border-color);
-        flex: 1 1 40%; /* 2 columns */
-    }
-}
-
-.scanlines {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1));
-    background-size: 100% 4px;
-    pointer-events: none;
-    z-index: 999;
-    opacity: 0.3;
-}
-
-/* --- GUI TOGGLE CONTAINER (Fixed Top Right) --- */
+/* --- GUI MODE & TOASTS --- */
 .gui-mode-container {
     position: fixed;
     top: 25px;
@@ -706,7 +306,6 @@ a:hover {
     }
 }
 
-/* --- TOAST NOTIFICATION (Top Center Green Banner) --- */
 #toast-container {
     position: fixed;
     top: 20px;
@@ -718,6 +317,7 @@ a:hover {
     align-items: center;
     width: auto;
 }
+
 
 .toast-notification {
     background-color: #107c10; /* The specific "Success Green" */
@@ -780,3 +380,30 @@ a:hover {
 .toast-close:hover {
     opacity: 1;
 }
+
+.hint-icon {
+    background-color: #f59e0b; /* Warning Orange */
+    color: white;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px; /* Slightly rounded square like reference */
+    text-align: center;
+    line-height: 16px;
+    font-weight: bold;
+    font-size: 11px;
+    display: inline-block;
+}
+
+/* --- SCANLINES & MISC --- */
+.scanlines {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.3;
+}
+
+a { color: var(--accent-primary); text-decoration: none; border-bottom: 1px dotted var(--accent-primary); }
+a:hover { background-color: var(--accent-primary); color: var(--bg-color); }
